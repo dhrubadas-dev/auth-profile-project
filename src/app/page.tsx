@@ -8,8 +8,7 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <section className="grid h-dvh grid-cols-4 place-items-center gap-4">
-      <UserProfileCard />
+    <section className="grid h-dvh grid-cols-3 place-items-center gap-4">
       <UserProfileCard />
       <UserProfileCard />
       <UserProfileCard />
