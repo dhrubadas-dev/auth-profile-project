@@ -2,8 +2,8 @@ import ToastButton from "@/components/Buttons/ToastButton";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home | Auth App",
-  description: "Home page of auth profile project",
+  title: "Register | Auth App",
+  description: "Register page of auth profile project",
 };
 
 const page = () => {
