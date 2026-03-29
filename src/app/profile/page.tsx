@@ -1,24 +1,23 @@
-import ToastButton from "@/components/Buttons/ToastButton";
+import { auth } from "@/lib/auth";
 import { Metadata } from "next";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Profile | Auth App",
   description: "Profile page of auth profile project",
 };
 
-const page = () => {
-  return (
-    <section className="grid h-dvh place-items-center">
-      <div className="space-y-4 text-center">
-        <h1 className="text-5xl font-semibold">Next.js Starter Fullstack</h1>
-        <h2 className="text-3xl">
-          Production grade Fullstack Next.js starter template
-        </h2>
+const page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-        <ToastButton />
-      </div>
-    </section>
-  );
+  if (!session) {
+    return redirect("/auth");
+  }
+
+  return <section className="grid h-dvh place-items-center"></section>;
 };
 
 export default page;
