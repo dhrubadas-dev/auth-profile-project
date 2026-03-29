@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeToggleButton from "../Buttons/ThemeToggleButton";
+import AuthNav from "./AuthNav";
 
 const Header = () => {
   return (
@@ -16,21 +17,7 @@ const Header = () => {
         </Link>
 
         <nav className="flex items-center gap-4">
-          <Link
-            className="hover:underline"
-            href={"/auth"}>
-            Login
-          </Link>
-          <Link
-            className="hover:underline"
-            href={"/auth/register"}>
-            Register
-          </Link>
-          <Link
-            className="hover:underline"
-            href={"/profile"}>
-            Profile
-          </Link>
+          <AuthNav />
 
           <ThemeToggleButton />
         </nav>
