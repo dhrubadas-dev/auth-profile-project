@@ -10,16 +10,3 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
-
-model LoginTable {
-  loginId       String @id @default(uuid())
-  loginFullName String
-  loginEmail    String @unique
-  loginPassword String
-}
-
-model RegisterTable {
-  registerId       String @id @default(uuid())
-  registerEmail    String @unique
-  registerPassword String
-}

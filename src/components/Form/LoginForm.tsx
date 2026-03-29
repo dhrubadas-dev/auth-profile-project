@@ -4,10 +4,10 @@ import { loginFormSchema, LoginFormType } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoaderIcon, LockIcon } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
-import { Button } from "./shadcnui/button";
-import { Checkbox } from "./shadcnui/checkbox";
-import { Field, FieldError, FieldLabel } from "./shadcnui/field";
-import { Input } from "./shadcnui/input";
+import { Button } from "../shadcnui/button";
+import { Checkbox } from "../shadcnui/checkbox";
+import { Field, FieldError, FieldLabel } from "../shadcnui/field";
+import { Input } from "../shadcnui/input";
 
 const LoginForm = () => {
   const {
