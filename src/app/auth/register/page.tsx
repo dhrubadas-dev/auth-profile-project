@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <section className="grid h-dvh place-items-center">
-      <Card className="w-xs">
+      <Card className="w-xl">
         <CardHeader className="text-center text-2xl">Register Form</CardHeader>
 
         <CardContent>

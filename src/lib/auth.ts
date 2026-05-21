@@ -14,4 +14,10 @@ export const auth = betterAuth({
     autoSignIn: false,
     requireEmailVerification: false,
   },
+
+  user: {
+    deleteUser: {
+      enabled: true,
+    },
+  },
 });

@@ -1,17 +1,54 @@
-import { Card, CardContent } from "./shadcnui/card";
-import { Separator } from "./shadcnui/separator";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { UserGetPayload } from "../../generated/prisma/models";
+import DeleteUserButton from "./Buttons/DeleteUserButton";
+import { Avatar, AvatarFallback, AvatarImage } from "./shadcnui/avatar";
+import { Card, CardContent, CardFooter, CardHeader } from "./shadcnui/card";
 
-const UserProfileCard = () => {
+type UserProfileCardProps = {
+  info: UserGetPayload<{
+    select: {
+      id: true;
+      image: true;
+      name: true;
+      email: true;
+    };
+  }>;
+};
+
+const UserProfileCard = async ({ info }: UserProfileCardProps) => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const nameArray = info.name.split(" ").map((i) => i.charAt(0));
+
+  const placeHolderName = nameArray.join("");
+
   return (
-    <Card className="w-sm">
-      <CardContent className="grid place-items-center gap-3">
-        <div className="m-2 size-45 rounded-3xl border-2"></div>
-        <Separator className="w-full" />
-        <div className="grid gap-2">
-          <p className="text-2xl font-semibold">Name : Dhruba Das</p>
-          <p className="text-lg">Email : dhrubadas.dev@gmail.com</p>
-        </div>
+    <Card className="w-sm rounded-3xl border border-white/20 bg-white/10 shadow-2xl backdrop-blur-xl backdrop-saturate-150 dark:bg-black/20">
+      <CardHeader className="flex flex-col items-center space-y-4 pt-8">
+        <Avatar className="col-span-1 size-24">
+          <AvatarImage
+            src={`/${info.image}`}
+            alt="Profile Picture"
+          />
+          <AvatarFallback className="bg-white/20 font-bold text-white">
+            {placeHolderName}
+          </AvatarFallback>
+        </Avatar>
+      </CardHeader>
+
+      <CardContent className="items-center justify-items-center">
+        <div className="font-medium">{info.name}</div>
+        <div className="text-sm">{info.email}</div>
       </CardContent>
+
+      {info.id === session?.user.id && (
+        <CardFooter className="justify-center">
+          <DeleteUserButton />
+        </CardFooter>
+      )}
     </Card>
   );
 };
